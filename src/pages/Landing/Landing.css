@@ -1,0 +1,184 @@
+.hero {
+  background: transparent;
+  padding: 5rem 0 3rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,212,255,0.06);
+  border: 1px solid rgba(0,212,255,0.15);
+  color: var(--cyan);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.hero-content h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.highlight {
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-content p {
+  color: var(--muted2);
+  font-size: 1.0625rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hero-card {
+  background: var(--s1);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.hero-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.hero-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.hero-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Sections */
+.stats-section { padding: 3rem 0; position: relative; z-index: 1; }
+.how-section { padding: 3rem 0; position: relative; z-index: 1; }
+.skills-section { padding: 3rem 0; position: relative; z-index: 1; }
+.features-section { padding: 3rem 0; position: relative; z-index: 1; }
+.cta-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(124,58,237,0.08));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+.cta-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem;
+}
+.cta-section p { color: var(--muted2); margin-bottom: 1.5rem; font-size: 1.0625rem; }
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  letter-spacing: -1px;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--muted2);
+  margin-bottom: 2rem;
+  font-size: 15px;
+}
+
+/* How Cards */
+.how-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.how-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.how-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.how-card p {
+  color: var(--muted2);
+  font-size: 14px;
+}
+.how-step {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+  color: var(--cyan);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+}
+
+/* Feature Cards */
+.feature-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.feature-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+.feature-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+.feature-card p {
+  font-size: 14px;
+  color: var(--muted2);
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { max-width: 100%; margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-visual { display: none; }
+}

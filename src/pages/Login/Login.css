@@ -1,0 +1,186 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ms-logo {
+  display: inline-flex;
+  margin-bottom: 1rem;
+}
+.ms-logo svg { width: 32px; height: 32px; }
+
+.login-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: .25rem;
+}
+
+.login-subtitle {
+  color: var(--muted);
+  font-size: .85rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.role-toggle {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,.04);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.role-btn {
+  flex: 1;
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.role-btn.active {
+  background: var(--cyan);
+  color: #000;
+}
+
+.user-select-section .form-label {
+  display: block;
+  margin-bottom: .75rem;
+  font-size: .8rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.user-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: .65rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: left;
+}
+
+.user-option:hover {
+  border-color: var(--cyan);
+  background: rgba(0,245,255,.04);
+}
+
+.user-option.selected {
+  border-color: var(--cyan);
+  background: rgba(0,245,255,.08);
+  box-shadow: 0 0 12px rgba(0,245,255,.15);
+}
+
+.user-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: .85rem;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+}
+
+.user-email {
+  font-size: .72rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-college {
+  font-size: .7rem;
+  color: var(--muted2);
+  white-space: nowrap;
+}
+
+.admin-login-info {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-icon {
+  font-size: 2.5rem;
+  margin-bottom: .75rem;
+}
+
+.admin-login-info p {
+  margin-bottom: .5rem;
+}
+
+.login-btn {
+  width: 100%;
+  font-size: .95rem;
+  padding: .85rem;
+}
+
+.login-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 1.25rem;
+}
