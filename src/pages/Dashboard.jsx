@@ -96,22 +96,22 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+        <div className="rounded-2xl border border-slate-700 bg-slate-800 p-5 shadow-lg shadow-black/20 transition-all duration-200 hover:border-slate-600">
           <p className="text-sm text-slate-300">Profile Score</p>
           <p className="mt-2 text-3xl font-semibold text-blue-400">{skillProfile?.ProfileScore ?? 0}</p>
         </div>
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+        <div className="rounded-2xl border border-slate-700 bg-slate-800 p-5 shadow-lg shadow-black/20 transition-all duration-200 hover:border-slate-600">
           <p className="text-sm text-slate-300">ATS Score</p>
           <p className="mt-2 text-3xl font-semibold text-blue-400">{skillProfile?.ATSScore ?? 0}</p>
         </div>
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+        <div className="rounded-2xl border border-slate-700 bg-slate-800 p-5 shadow-lg shadow-black/20 transition-all duration-200 hover:border-slate-600">
           <p className="text-sm text-slate-300">Top Matches</p>
           <p className="mt-2 text-3xl font-semibold text-blue-400">{matches.length}</p>
         </div>
       </div>
 
       {noResume ? (
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-8 text-center">
+        <div className="rounded-2xl border border-slate-700 bg-slate-800 p-8 text-center shadow-lg shadow-black/20">
           <h2 className="text-xl font-semibold text-white">No resume uploaded yet</h2>
           <p className="mt-2 text-slate-300">
             Upload your resume to unlock AI skill analysis and job matching.
@@ -124,7 +124,7 @@ export default function Dashboard() {
           </Link>
         </div>
       ) : (
-        <div className="rounded-xl border border-slate-700 bg-slate-800 p-6">
+        <div className="rounded-2xl border border-slate-700 bg-slate-800 p-6 shadow-lg shadow-black/20">
           <h2 className="text-lg font-semibold text-white">Top 5 Matches</h2>
           {matches.length === 0 ? (
             <p className="mt-3 text-slate-300">No matches available yet.</p>
@@ -133,7 +133,7 @@ export default function Dashboard() {
               {matches.map((match) => (
                 <li
                   key={match.itemId}
-                  className="flex items-center justify-between rounded-lg border border-slate-700 bg-slate-700/40 p-4"
+                  className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-700/40 p-4 transition-all duration-200 hover:bg-slate-700/70"
                 >
                   <div>
                     <p className="text-sm font-medium text-white">{match.JobID}</p>
