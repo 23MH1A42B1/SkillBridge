@@ -12,8 +12,19 @@ const firebaseConfig = {
   appId:             import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const app    = initializeApp(firebaseConfig);
-export const auth    = getAuth(app);
-export const db      = getFirestore(app);
-export const storage = getStorage(app);
+let app, auth, db, storage;
+
+try {
+  if (!firebaseConfig.apiKey) throw new Error("Missing Firebase API Key");
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+} catch (error) {
+  console.error("Firebase Initialization Error:", error);
+  // This prevents the entire JS module from throwing a fatal error,
+  // allowing React to at least load and display an error screen.
+}
+
+export { auth, db, storage };
 export default app;
