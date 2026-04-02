@@ -16,28 +16,83 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isImpersonated, setIsImpersonated] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser);
-        try {
-          const docRef = doc(db, 'users', firebaseUser.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setProfile(docSnap.data());
-          }
-        } catch (error) {
-          console.error("Failed to load user profile:", error);
-        }
-      } else {
-        setUser(null);
-        setProfile(null);
+    const handleAuth = async () => {
+      // 1. Check URL for new impersonation request
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenFromUrl = urlParams.get('impersonate');
+      if (tokenFromUrl) {
+        sessionStorage.setItem('impersonateToken', tokenFromUrl);
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
-      setLoading(false);
-    });
-    return unsubscribe;
+
+      const activeToken = sessionStorage.getItem('impersonateToken');
+
+      if (activeToken) {
+        try {
+          const tokenSnap = await getDoc(doc(db, 'admin', 'impersonations', 'tokens', activeToken));
+          if (tokenSnap.exists()) {
+            const data = tokenSnap.data();
+            const now = new Date();
+            if (new Date(data.expiresAt) > now) {
+              // Valid impersonation!
+              setIsImpersonated(true);
+              const targetUid = data.targetUid;
+              setUser({ uid: targetUid, email: 'impersonated@skillbridge.com', isImpersonated: true });
+              
+              const profileSnap = await getDoc(doc(db, 'users', targetUid));
+              if (profileSnap.exists()) setProfile(profileSnap.data());
+              
+              setLoading(false);
+              return; // Bypass normal auth!
+            } else {
+              console.warn("Impersonation token expired");
+              sessionStorage.removeItem('impersonateToken');
+            }
+          } else {
+            console.warn("Invalid impersonation token");
+            sessionStorage.removeItem('impersonateToken');
+          }
+        } catch (err) {
+          console.error("Failed to verify impersonation", err);
+          sessionStorage.removeItem('impersonateToken');
+        }
+      }
+
+      // 2. Normal Firebase Auth
+      const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        if (firebaseUser) {
+          setUser(firebaseUser);
+          try {
+            const docRef = doc(db, 'users', firebaseUser.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              setProfile(docSnap.data());
+            }
+          } catch (error) {
+            console.error("Failed to load user profile:", error);
+          }
+        } else {
+          setUser(null);
+          setProfile(null);
+        }
+        setLoading(false);
+      });
+      
+      return () => unsubscribe && unsubscribe();
+    };
+
+    handleAuth();
   }, []);
+
+  const endImpersonation = () => {
+    sessionStorage.removeItem('impersonateToken');
+    window.location.href = '/login';
+  };
+
 
   const signUp = async (email, password, fullName, college, desiredRole) => {
     try {
@@ -84,6 +139,8 @@ export const AuthProvider = ({ children }) => {
     user,
     profile,
     loading,
+    isImpersonated,
+    endImpersonation,
     signUp,
     signIn,
     signOut

@@ -2,12 +2,89 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkillBridge</title>
+
+    <!-- ── SEO ───────────────────────────────────────────────────── -->
+    <title>SkillBridge | AI-Powered Career Platform</title>
+    <meta name="description" content="SkillBridge helps you land your dream job with AI-powered resume analysis, real-time job matching, interview prep, and smart skill gap roadmaps." />
+    <meta name="keywords" content="AI job matching, resume analysis, ATS score, interview prep, career roadmap, skill gap, job search" />
+    <meta name="author" content="SkillBridge" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://skillbridge.app" />
+
+    <!-- ── Open Graph (Social previews) ─────────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SkillBridge | AI-Powered Career Platform" />
+    <meta property="og:description" content="Your AI career co-pilot — resume tailoring, real-time job matching, interview prep and skill roadmaps." />
+    <meta property="og:url" content="https://skillbridge.app" />
+    <meta property="og:image" content="/favicon.png" />
+
+    <!-- ── Twitter Card ──────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SkillBridge | AI Career Platform" />
+    <meta name="twitter:description" content="AI-powered resume analysis, job matching, and interview prep." />
+    <meta name="twitter:image" content="/favicon.png" />
+
+    <!-- ── Security Headers (HTML-level, complement server headers) -->
+    <!-- Prevent clickjacking / iframe embedding handled via server headers -->
+    <!-- Stop browser sniffing content type -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- No referrer sent on navigation -->
+    <meta name="referrer" content="no-referrer" />
+    <!-- Disable DNS prefetch for external resources -->
+    <meta http-equiv="x-dns-prefetch-control" content="off" />
+
+    <!-- ── Premium Typography ────────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Base dark background before React mounts */
+      body { background-color: #030014; margin: 0; }
+
+      /* ── PRINT PROTECTION ───────────────────────────────────────
+         Hide all app content when user tries to print.
+         Shows a warning message instead.
+      ─────────────────────────────────────────────────────────── */
+      @media print {
+        body * { visibility: hidden !important; }
+        body::after {
+          visibility: visible !important;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          content: "🔒 Printing is disabled on SkillBridge.";
+          font-size: 24px;
+          font-family: sans-serif;
+          color: #111;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+
+      /* ── DISABLE IMAGE DRAG / SAVE ──────────────────────────── */
+      img, svg, canvas {
+        -webkit-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+      }
+      /* Re-enable pointer events on interactive SVGs */
+      button svg, a svg, [role="button"] svg {
+        pointer-events: auto;
+      }
+
+      /* ── DISABLE TEXT SELECTION GLOBALLY (uncomment if needed) ─
+      * { user-select: none; -webkit-user-select: none; }
+      input, textarea { user-select: text; -webkit-user-select: text; }
+      ── */
+    </style>
   </head>
-  <body>
+  <body class="bg-[#030014]">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
