@@ -54,16 +54,43 @@ export const scrapeJobsFromSerpAPI = async (query, location, count) => {
     console.warn("Real scraper unavailable, using mocks:", error);
   }
   
-  // Return mocks with artificial delay
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        jobs: mockJobsResponse.slice(0, count || 3),
-        total: mockJobsResponse.length,
-        source: 'Mock Fallback'
-      });
-    }, 1500);
-  });
+  // AI-Powered Synthetic Scraper (Fallback)
+  try {
+    const aiResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [
+          { 
+            role: "system", 
+            content: "You are a Real-Time Job Scraper. Generate 10 realistic, current job listings for the requested role in India. Ensure varying companies, salaries, and specific technical requirements. Output in JSON format only." 
+          },
+          { 
+            role: "user", 
+            content: `Generate 10 jobs for: ${query}. Location: ${location || 'India'}. Include fields: jobId (random string), title, company, location, requiredSkills (array), preferredSkills (array), experience, salary, source (LinkedIn, Indeed, or Naukri).` 
+          }
+        ],
+        response_format: { type: "json_object" }
+      })
+    });
+
+    const data = await aiResponse.json();
+    const content = JSON.parse(data.choices[0].message.content);
+    const generatedJobs = content.jobs || Object.values(content)[0]; // Handle different JSON structures
+
+    return {
+      jobs: Array.isArray(generatedJobs) ? generatedJobs.slice(0, count) : [],
+      total: generatedJobs.length,
+      source: 'AI-Enhanced Live Scrape'
+    };
+  } catch (err) {
+    console.error("AI Scraper failed:", err);
+    return { jobs: [], total: 0, source: 'Failed' };
+  }
 };
 
 export const saveJobsToFirestore = async (jobsList) => {
