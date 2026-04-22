@@ -23,7 +23,7 @@ export const generateJobMatchEmailHTML = (candidateName, matches) => {
   return `
     <div style="font-family: Arial, sans-serif; max-w-lg; margin:auto; color:#374151;">
       <div style="text-align:center; padding:20px; background:#4f46e5; color:white; border-radius:8px 8px 0 0;">
-        <h2 style="margin:0;">🌉 SkillBridge</h2>
+        <h2 style="margin:0; color: #0d9488;">SkillBridge</h2>
         <p style="margin:4px 0 0 0;">Your Latest Job Matches</p>
       </div>
       <div style="padding:24px; border:1px solid #e5e7eb; border-top:none; border-radius:0 0 8px 8px;">
