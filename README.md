@@ -44,41 +44,6 @@ graph TD
     D --> E
     F[Chrome Extension] --> A
 ```
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-*   Node.js (v18+)
-*   Firebase Project
-*   Groq API Key
-
-### Installation
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/23MH1A42B1/SkillBridge.git
-   cd SkillBridge
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   cd admin && npm install
-   ```
-
-3. **Environment Setup**
-   Create a `.env` file in both the root and `admin/` folders with your Firebase and Groq credentials.
-
-4. **Run Locally**
-   ```bash
-   # Main App
-   npm run dev
-   
-   # Admin Portal
-   cd admin && npm run dev
-   ```
-
 ---
 
 ## 📈 Platform Audit (Admin)
