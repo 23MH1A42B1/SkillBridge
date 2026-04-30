@@ -10,6 +10,7 @@ import { useCountUp } from '../hooks/useCountUp';
 import { getUserSkills } from '../services/resumeService';
 import { getMyMatches } from '../services/matchService';
 import MarketIntelligence from '../components/MarketIntelligence';
+import ExtensionSync from '../components/ExtensionSync';
 
 
 export default function Dashboard() {
@@ -130,6 +131,9 @@ export default function Dashboard() {
                 <KpiCard key={card.label} {...card} trigger={kpiVisible} />
               ))}
             </div>
+
+            {/* ── Extension Sync ────────────────────────────── */}
+            <ExtensionSync userSkills={userSkills} />
 
             {/* ── Market Intelligence ────────────────────────── */}
             <MarketIntelligence jobMatches={topMatches} />

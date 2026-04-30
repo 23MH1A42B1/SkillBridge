@@ -130,18 +130,10 @@ document.getElementById('coverLetterBtn').addEventListener('click', async () => 
     }
 });
 
-// Mock sync listener - in a real app, this would be a message from the content script
+// Handle Sync Tips
 document.addEventListener('click', (e) => {
     if (e.target.id === 'syncLink') {
-        // Mocking a sync from the dashboard
-        const mockProfile = {
-            name: "John Doe",
-            skills: { technical: ["React", "Node.js", "JavaScript", "Docker"] },
-            groqKey: "gsk_vC3B6Xf8Y8Q..." // User would sync this from their dashboard
-        };
-        chrome.storage.local.set({ skillbridge_profile: mockProfile }, () => {
-            userProfile = mockProfile;
-            document.getElementById('status').innerText = "✅ Profile Synced!";
-        });
+        // Open the live dashboard for syncing
+        chrome.tabs.create({ url: 'https://skill-bridge-two-zeta.vercel.app/dashboard' });
     }
 });

@@ -97,9 +97,27 @@ function injectMagicFill() {
   document.body.appendChild(btn);
 }
 
+// Listen for sync events from the dashboard
+window.addEventListener('SkillBridgeSyncEvent', (event) => {
+  const { type, payload } = event.detail;
+  if (type === 'SKILLBRIDGE_SYNC') {
+    chrome.storage.local.set({ skillbridge_profile: payload }, () => {
+      console.log('✅ SkillBridge Profile Synced Successfully!');
+    });
+  }
+});
+
 // Watch for DOM changes (common on SPA job boards)
-const observer = new MutationObserver(() => injectMagicFill());
+const observer = new MutationObserver(() => {
+  // Only inject on job boards, not on the dashboard itself
+  const isJobBoard = /linkedin|indeed|glassdoor|greenhouse|lever/.test(window.location.hostname);
+  if (isJobBoard) {
+    injectMagicFill();
+  }
+});
 observer.observe(document.body, { childList: true, subtree: true });
 
 // Initial injection
-injectMagicFill();
+if (/linkedin|indeed|glassdoor|greenhouse|lever/.test(window.location.hostname)) {
+  injectMagicFill();
+}

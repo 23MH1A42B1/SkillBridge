@@ -10,13 +10,22 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.linkedin.com/*", "*://*.indeed.com/*", "*://*.glassdoor.com/*", "*://*.greenhouse.io/*", "*://*.lever.co/*"],
+      "matches": [
+        "*://*.linkedin.com/*", 
+        "*://*.indeed.com/*", 
+        "*://*.glassdoor.com/*", 
+        "*://*.greenhouse.io/*", 
+        "*://*.lever.co/*",
+        "https://skill-bridge-two-zeta.vercel.app/*",
+        "https://skill-bridge-2nmi.vercel.app/*"
+      ],
       "js": ["content.js"],
       "css": ["content.css"]
     }
   ],
   "host_permissions": [
     "https://api.groq.com/*",
-    "http://localhost:5173/*"
+    "https://skill-bridge-two-zeta.vercel.app/*",
+    "https://skill-bridge-2nmi.vercel.app/*"
   ]
 }
