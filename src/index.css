@@ -534,30 +534,29 @@ textarea::placeholder {
   .app-main-expanded,
   .app-main-collapsed { margin-left: 0; }
   .mobile-topbar { display: flex; }
+  
   .mobile-tab-bar {
-  @apply fixed bottom-0 left-0 right-0 h-16 bg-dark-card/80 backdrop-blur-xl border-t border-white/5 
-         flex items-center justify-around px-2 z-[90] pb-safe transition-transform duration-300;
-}
-
-@media (min-width: 768px) {
-  .mobile-tab-bar { display: none; }
-}
-
-.mobile-tab-item {
-  @apply flex flex-col items-center justify-center gap-1 flex-1 h-full transition-all duration-200;
-}
+    @apply fixed bottom-0 left-0 right-0 h-16 bg-dark-card/80 backdrop-blur-xl border-t border-white/5 
+           flex items-center justify-around px-2 z-[90] pb-safe transition-transform duration-300;
   }
+
+  .mobile-tab-item {
+    @apply flex flex-col items-center justify-center gap-1 flex-1 h-full transition-all duration-200;
+  }
+
   .app-content {
-    padding: 1.25rem 1rem 5rem;
+    padding: 1.25rem 1rem 7rem;
   }
+
   .toast-container {
     bottom: 5.5rem;
     right: 1rem;
     left: 1rem;
   }
-  .toast-item {
-    max-width: 100%;
-  }
+}
+
+@media (min-width: 768px) {
+  .mobile-tab-bar { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
