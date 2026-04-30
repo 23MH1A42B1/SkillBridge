@@ -197,7 +197,7 @@ export default function AppLayout({ children }) {
   const filteredMobileNav = MOBILE_NAV.filter(item => isFeatureEnabled(item.featureKey));
 
   return (
-    <div className="app-shell flex flex-col h-screen overflow-hidden">
+    <div className="app-shell flex flex-col min-h-screen">
       {isImpersonated && (
         <div className="bg-purple-600/95 backdrop-blur-md text-white py-2 px-4 font-semibold text-sm z-[100] shadow-lg flex items-center justify-between flex-shrink-0 border-b border-purple-500">
           <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function AppLayout({ children }) {
           ⚠️ {config.maintenance.message || "SkillBridge is currently under maintenance. Some features may be unavailable."}
         </div>
       )}
-      <div className="flex-1 flex overflow-hidden relative">
+      <div className="flex-1 flex relative">
         <ScrollProgress />
         <GlobalAssistant />
 
