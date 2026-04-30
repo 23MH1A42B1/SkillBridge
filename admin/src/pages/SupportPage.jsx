@@ -139,10 +139,10 @@ export default function SupportPage() {
                         ? 'bg-brand-600 text-white rounded-tr-none'
                         : 'bg-admin-card border border-admin-border text-slate-200 rounded-tl-none'
                     }`}>
-                      {/* Delete Button - Only visible on hover */}
+                      {/* Delete Button - Always visible for Admin */}
                       <button
                         onClick={() => handleDeleteMessage(msg.id)}
-                        className={`absolute top-2 ${msg.role === 'admin' ? '-left-8' : '-right-8'} opacity-0 group-hover:opacity-100 transition-opacity p-1.5 text-slate-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg`}
+                        className={`absolute top-2 ${msg.role === 'admin' ? '-left-10' : '-right-10'} p-1.5 text-slate-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors`}
                         title="Delete message"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
