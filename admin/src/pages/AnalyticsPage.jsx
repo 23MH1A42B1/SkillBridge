@@ -250,7 +250,7 @@ export default function AnalyticsPage() {
             <div className="w-9 h-9 bg-rose-500/15 rounded-xl flex items-center justify-center text-lg">📉</div>
             <div>
               <p className="text-white font-semibold">Churn Risk</p>
-              <p className="text-slate-500 text-xs">Users inactive for > 7 days</p>
+              <p className="text-slate-500 text-xs">Users inactive for &gt; 7 days</p>
             </div>
           </div>
           <div className="flex flex-col items-center justify-center h-48">
