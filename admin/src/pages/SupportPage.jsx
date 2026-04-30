@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AdminLayout from '../components/AdminLayout';
-import { subscribeToChats, subscribeToChatMessages, sendAdminMessage, closeChat } from '../services/supportService';
+import { subscribeToChats, subscribeToChatMessages, sendAdminMessage, closeChat, deleteMessage } from '../services/supportService';
 import { useAdminAuth } from '../auth/AdminAuthContext';
 
 export default function SupportPage() {
@@ -50,6 +50,16 @@ export default function SupportPage() {
     if (!selectedChat) return;
     await closeChat(selectedChat.id);
   };
+  const handleDeleteMessage = async (messageId) => {
+    if (!selectedChat || !window.confirm('Are you sure you want to delete this message?')) return;
+    try {
+      await deleteMessage(selectedChat.id, messageId);
+    } catch (error) {
+      console.error("Failed to delete message:", error);
+      alert("Failed to delete message. Check console for details.");
+    }
+  };
+
 
   return (
     <AdminLayout title="User Support" subtitle="Real-time assistance for platform users">
@@ -123,12 +133,23 @@ export default function SupportPage() {
               {/* Messages */}
               <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-admin-bg/30 custom-scrollbar">
                 {messages.map((msg) => (
-                  <div key={msg.id} className={`flex ${msg.role === 'admin' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[70%] p-4 rounded-2xl shadow-sm ${
+                  <div key={msg.id} className={`flex group relative ${msg.role === 'admin' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[70%] p-4 rounded-2xl shadow-sm relative ${
                       msg.role === 'admin'
                         ? 'bg-brand-600 text-white rounded-tr-none'
                         : 'bg-admin-card border border-admin-border text-slate-200 rounded-tl-none'
                     }`}>
+                      {/* Delete Button - Only visible on hover */}
+                      <button
+                        onClick={() => handleDeleteMessage(msg.id)}
+                        className={`absolute top-2 ${msg.role === 'admin' ? '-left-8' : '-right-8'} opacity-0 group-hover:opacity-100 transition-opacity p-1.5 text-slate-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg`}
+                        title="Delete message"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+
                       <p className="text-sm leading-relaxed">{msg.text}</p>
                       <div className={`flex items-center gap-2 mt-2 ${msg.role === 'admin' ? 'justify-end' : 'justify-start'}`}>
                         <span className={`text-[10px] font-medium ${msg.role === 'admin' ? 'text-brand-200' : 'text-slate-500'}`}>

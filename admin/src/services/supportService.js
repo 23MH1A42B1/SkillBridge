@@ -1,6 +1,4 @@
-import { 
-  collection, addDoc, onSnapshot, query, 
-  orderBy, doc, updateDoc, serverTimestamp 
+  orderBy, doc, updateDoc, serverTimestamp, deleteDoc 
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -46,4 +44,9 @@ export const closeChat = async (chatId) => {
     status: 'closed',
     updatedAt: serverTimestamp(),
   });
+};
+
+export const deleteMessage = async (chatId, messageId) => {
+  const messageRef = doc(db, 'support_chats', chatId, 'messages', messageId);
+  await deleteDoc(messageRef);
 };
