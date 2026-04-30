@@ -25,6 +25,9 @@ dist-ssr
 
 # .env
 .env
+
+# Firebase service account (sensitive credentials)
+firebase-service-account.json
 .env.local
 .env.development.local
 .env.test.local

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { 
+      width: 340px; 
+      padding: 20px; 
+      font-family: 'Inter', sans-serif; 
+      background: #050507; 
+      color: white; 
+      margin: 0;
+    }
+    h3 { 
+      margin: 0 0 16px 0; 
+      font-size: 16px; 
+      font-weight: 900; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      color: #fff;
+    }
+    .badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(13, 148, 136, 0.15);
+      color: #2dd4bf;
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .status { 
+      font-size: 12px; 
+      color: #888; 
+      margin-bottom: 16px; 
+      font-weight: 600;
+    }
+    .btn { 
+      background: linear-gradient(135deg, #0d9488, #6366f1); 
+      color: white; 
+      border: none; 
+      padding: 12px; 
+      width: 100%; 
+      cursor: pointer; 
+      border-radius: 10px; 
+      font-weight: 900; 
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn:hover {
+      box-shadow: 0 0 15px rgba(13, 148, 136, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      background-image: none;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      box-shadow: none;
+    }
+    .result-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .score-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .score { 
+      font-size: 28px; 
+      font-weight: 900;
+      color: #2dd4bf; 
+    }
+    .cover-letter-box {
+      font-family: monospace;
+      font-size: 11px;
+      color: #ccc;
+      line-height: 1.5;
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      display: none;
+    }
+    .blinking-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 12px;
+      background: #6366f1;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <h3>🚀 SkillBridge <span class="badge">Auto-Pilot</span></h3>
+  
+  <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #555;">
+    <div id="syncStatus">Not Synced</div>
+    <div id="magicFillStatus">Magic Fill: Inactive</div>
+  </div>
+
+  <div id="status" class="status">Waiting for job page...</div>
+  
+  <button id="analyzeBtn" class="btn">🧠 Analyze Job Fit</button>
+  <button id="coverLetterBtn" class="btn btn-secondary" style="display:none;">✍️ Generate Cover Letter</button>
+  
+  <div id="resultCard" class="result-card">
+    <div class="score-container">
+      <div>
+        <div style="font-size:10px; color:#888; text-transform:uppercase; font-weight:800; margin-bottom:4px;">Semantic Match</div>
+        <div class="score" id="matchScore">--%</div>
+      </div>
+      <div id="jobTitle" style="font-size:12px; font-weight:bold; color:white; text-align:right; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>
+    </div>
+    <div id="summary" style="font-size:11px; color:#aaa; line-height:1.5; font-weight:500;"></div>
+  </div>
+
+  <div id="coverLetterBox" class="cover-letter-box">
+    <span id="clText"></span><span class="blinking-cursor"></span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
